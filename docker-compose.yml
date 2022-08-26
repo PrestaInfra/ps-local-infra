@@ -1,0 +1,82 @@
+version: '3'
+services:
+  infra_manager:
+    image: portainer/portainer
+    container_name: infra_manager
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/volumes/portainer-datas:/data
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    networks:
+      localinfra-network:
+        ipv4_address: 172.21.0.10
+  mariadb:
+    image: mariadb:10.1
+    container_name: qa-mariadb-10.1
+    ports:
+      - "3307:3306"
+    restart: always
+    volumes:
+      - "./db_data/mariadb-10.1:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+        localinfra-network:
+          ipv4_address: 172.21.0.11
+  mysql: 
+    image: mysql:5.7
+    container_name: mysql_server
+    restart: always
+    volumes:
+      - ~/volumes/databases/mysql:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=prestashop_dev
+      - MYSQL_ROOT_HOST=%
+    networks:
+      localinfra-network:
+        ipv4_address: 172.21.0.12
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "3023:80"
+    links:
+      - mysql_server:db
+    environment:
+      - MYSQL_ROOT_PASSWORD=prestashop_dev
+      - PMA_HOST=172.21.0.12
+      - PMA_PORT=3306
+    networks:
+      localinfra-network:
+        ipv4_address: 172.21.0.13
+  local_volumes:
+    image: debian:8
+    container_name: local_volumes
+    restart: always
+    stdin_open: true
+    tty: true
+    working_dir: /volumes/applications/
+    volumes:
+      - ~/volumes:/volumes/
+    command: >
+      bash -c "
+      export DEBIAN_FRONTEND=noninteractive
+      apt-get update && 
+      apt-get install -y --no-install-recommends --no-upgrade apt-utils &&
+      apt-get install -y --no-upgrade vim git zsh curl 
+      "
+    networks:
+      localinfra-network:
+        ipv4_address: 172.21.0.14
+networks:
+  localinfra-network:
+    ipam:
+    driver: default
+    config: 
+      - subnet: "172.21.0.0/16"
