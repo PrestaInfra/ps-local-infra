@@ -34,24 +34,12 @@ RUN install-php-extensions \
   opcache \
   pdo_mysql \
   pdo_pgsql \
-  pgsql \
   redis \
   soap \
   xsl \
   zip \
   xdebug \
-  sockets \
-  apt-transport-https \
-  build-essential \
-  ca-certificates \
-  libssl-dev \
-  python \
-  rsync \
-  software-properties-common \
-  devscripts \
-  autoconf \
-  ssl-cert \
-  zsh
+  sockets
 
 
 RUN echo '# 3 - INSTALL COMPOSER'
@@ -65,7 +53,7 @@ COPY entrypoints /home/entrypoints
 RUN chmod -R +x /home/entrypoints/* 
 WORKDIR /var/www/html
 EXPOSE 80/tcp
-ENTRYPOINT /home/entrypoints/prestashop/setup.sh && /bin/bash
+ENTRYPOINT /home/entrypoints/setup.sh && /bin/bash
 
 
 
