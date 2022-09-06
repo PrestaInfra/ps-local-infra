@@ -30,4 +30,4 @@ fi
 docker-compose up -d
 
 ## Fix the troubleshooting : Error: Unable to open log file xxxx for writing.
-sudo chmod -R 777 volumes/
+sudo chmod -R 777 ./volumes/

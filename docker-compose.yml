@@ -1,5 +1,26 @@
 version: '3'
 services:
+  model_ps_php73:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/php-7.3.Dockerfile
+    container_name: model_ps_php73
+    depends_on:
+        - mysql
+        - phpmyadmin
+    stdin_open: true
+    tty: true
+    restart: always
+    volumes:
+        -  ./volumes/shops/model_ps_php73:/var/www/html
+    networks:
+        localinfra-network:
+          ipv4_address: 172.21.0.15
+    env_file:
+        - ./env/prestashop/common.env
+        - ./env/prestashop/1.7.3.env
+    ports:
+        - "3020:80"
   model_ps_php74:
     build:
       context: ./

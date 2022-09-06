@@ -36,7 +36,7 @@ if [ ! -z "$PS_AUTO_INSTALL" ] && [ "$PS_AUTO_INSTALL" = "1" ] ; then
    echo "[⏳] - Installation automatique en cours ..." 
 
    php install-dev/index_cli.php \
-        --domain=${PS_DOMAIN}:${PS_APP_PORT} \
+        --domain=${PS_DOMAIN}:${PROJECT_APP_PORT} \
         --db_server=${PS_DB_SERVER} \
         --db_name=${PS_DB_NAME} \
         --db_user=${PS_DB_USER} \
