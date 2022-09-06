@@ -22,7 +22,15 @@ if [ "$PS_DB_SERVER" = "" ]; then
     echo "[⚠️] - Vous devez spécifier une adresse serveur MySQL" 
 elif [ "$PS_DB_SERVER" != "<to be defined>" ]; then
     RET=1
+    MAX_RETRY=5
+    COUNTER=0
     while [ $RET -ne 0 ]; do
+
+        if [ $COUNTER -eq $MAX_RETRY ]; then
+            echo "[❌] - Serveur MySQL $PS_DB_SERVER non disponible"
+            break
+        fi
+
         echo "[⏳] - Vérification disponibilité serveur MySQL : $PS_DB_SERVER " 
         mysql -h $PS_DB_SERVER -P $PS_DB_PORT -u $PS_DB_USER -p$PS_DB_PASSWD -e "status" > /dev/null 2>&1
         RET=$?
@@ -31,6 +39,8 @@ elif [ "$PS_DB_SERVER" != "<to be defined>" ]; then
             echo "[⏳] - En attente de confirmation du démarrage du service MySQL" 
             sleep 5
         fi
+
+        ((COUNTER++))
     done
         echo "[✅] - Serveur MySQL $PS_DB_SERVER est disponible !" 
 

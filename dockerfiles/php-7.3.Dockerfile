@@ -44,7 +44,7 @@ RUN install-php-extensions \
 
 RUN echo '# 3 - INSTALL COMPOSER'
 
-RUN install-php-extensions @composer-1
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version # confirm installation
 
 RUN echo '# 4 - INIT ENTRYPOINTS'
