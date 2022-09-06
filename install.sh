@@ -14,7 +14,7 @@ fi
 if [[ "$deletevolumes" = "y" ]]; then
     echo "Delete existent volumes"
     docker volume rm $(docker volume ls -q)
-    sudo rm -rf ./volumes/*
+    rm -rf ./volumes/*
 fi
 
 if [[ "$deleteimages" = "y" ]]; then
