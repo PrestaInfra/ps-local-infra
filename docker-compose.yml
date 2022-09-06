@@ -6,32 +6,19 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ~/volumes/portainer-datas:/data
+      - ./volumes/portainer:/data
     ports:
       - "9000:9000"
       - "8000:8000"
     networks:
       localinfra-network:
         ipv4_address: 172.21.0.10
-  mariadb:
-    image: mariadb:10.1
-    container_name: qa-mariadb-10.1
-    ports:
-      - "3307:3306"
-    restart: always
-    volumes:
-      - "./db_data/mariadb-10.1:/var/lib/mysql"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    networks:
-        localinfra-network:
-          ipv4_address: 172.21.0.11
   mysql: 
     image: mysql:5.7
     container_name: mysql_server
     restart: always
     volumes:
-      - ~/volumes/databases/mysql:/var/lib/mysql
+      - ./volumes/mysql:/var/lib/mysql
     ports:
       - "3307:3306"
     environment:
