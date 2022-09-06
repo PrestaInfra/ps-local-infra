@@ -55,25 +55,7 @@ services:
     networks:
       localinfra-network:
         ipv4_address: 172.21.0.13
-  local_volumes:
-    image: debian:8
-    container_name: local_volumes
-    restart: always
-    stdin_open: true
-    tty: true
-    working_dir: /volumes/applications/
-    volumes:
-      - ~/volumes:/volumes/
-    command: >
-      bash -c "
-      export DEBIAN_FRONTEND=noninteractive
-      apt-get update && 
-      apt-get install -y --no-install-recommends --no-upgrade apt-utils &&
-      apt-get install -y --no-upgrade vim git zsh curl 
-      "
-    networks:
-      localinfra-network:
-        ipv4_address: 172.21.0.14
+
 networks:
   localinfra-network:
     ipam:
