@@ -57,7 +57,7 @@ services:
     links:
       - mysql:db
     environment:
-      - MYSQL_ROOT_PASSWORD=prestashop_dev
+      - MYSQL_ROOT_PASSWORD=Mxloak1244xlnw
       - PMA_HOST=172.21.0.12
       - PMA_PORT=3306
     networks:
