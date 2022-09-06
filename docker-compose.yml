@@ -47,7 +47,7 @@ services:
     ports:
       - "3023:80"
     links:
-      - mysql_server:db
+      - mysql:db
     environment:
       - MYSQL_ROOT_PASSWORD=prestashop_dev
       - PMA_HOST=172.21.0.12
@@ -59,6 +59,6 @@ services:
 networks:
   localinfra-network:
     ipam:
-    driver: default
-    config: 
-      - subnet: "172.21.0.0/16"
+      driver: default
+      config:
+        - subnet: "172.21.0.0/16"
