@@ -1,10 +1,10 @@
 version: '3'
 services:
-  model_ps_php73:
+  template_prestashop_php73:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.3.Dockerfile
-    container_name: model_ps_php73
+    container_name: template_prestashop_php73
     depends_on:
         - mysql
         - phpmyadmin
@@ -12,7 +12,7 @@ services:
     tty: true
     restart: always
     volumes:
-        -  ./volumes/shops/model_ps_php73:/var/www/html
+        -  ./volumes/shops/template_prestashop_php73:/var/www/html
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.15
@@ -21,11 +21,11 @@ services:
         - ./env/prestashop/1.7.3.env
     ports:
         - "3020:80"
-  model_ps_php74:
+  template_prestashop_php74:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.4.Dockerfile
-    container_name: model_ps_php74
+    container_name: template_prestashop_php74
     depends_on:
         - mysql
         - phpmyadmin
@@ -33,7 +33,7 @@ services:
     tty: true
     restart: always
     volumes:
-        -  ./volumes/shops/model_ps_php74:/var/www/html
+        -  ./volumes/shops/template_prestashop_php74:/var/www/html
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.14
