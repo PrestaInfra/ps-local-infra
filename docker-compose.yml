@@ -1,10 +1,52 @@
 version: '3'
 services:
-  template_prestashop_php73:
+  template_php7.1:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/php-7.1.Dockerfile
+    container_name: template_php7.1
+    depends_on:
+        - mysql
+        - phpmyadmin
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+        localinfra-network:
+          ipv4_address: 172.21.0.18
+  template_php7.2:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/php-7.2.Dockerfile
+    container_name: template_php7.2
+    depends_on:
+        - mysql
+        - phpmyadmin
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+        localinfra-network:
+          ipv4_address: 172.21.0.17
+  template_php7.3:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.3.Dockerfile
-    container_name: template_prestashop_php73
+    container_name: template_php7.3
+    depends_on:
+        - mysql
+        - phpmyadmin
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+        localinfra-network:
+          ipv4_address: 172.21.0.16
+  template_php7.4:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/php-7.4.Dockerfile
+    container_name: template_php7.4
     depends_on:
         - mysql
         - phpmyadmin
@@ -14,11 +56,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.15
-  template_prestashop_php74:
+  template_php7.8:
     build:
       context: ./
-      dockerfile: ./dockerfiles/php-7.4.Dockerfile
-    container_name: template_prestashop_php74
+      dockerfile: ./dockerfiles/php-7.8.Dockerfile
+    container_name: template_php7.8
     depends_on:
         - mysql
         - phpmyadmin
