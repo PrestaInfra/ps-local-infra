@@ -11,16 +11,9 @@ services:
     stdin_open: true
     tty: true
     restart: always
-    volumes:
-        -  ./volumes/shops/template_prestashop_php73:/var/www/html
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.15
-    env_file:
-        - ./env/prestashop/common.env
-        - ./env/prestashop/1.7.3.env
-    ports:
-        - "3020:80"
   template_prestashop_php74:
     build:
       context: ./
@@ -32,37 +25,30 @@ services:
     stdin_open: true
     tty: true
     restart: always
-    volumes:
-        -  ./volumes/shops/template_prestashop_php74:/var/www/html
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.14
-    env_file:
-        - ./env/prestashop/common.env
-        - ./env/prestashop/1.7.4.env
-    ports:
-        - "3019:80"
-  infra_manager:
+  portainer:
     image: portainer/portainer
-    container_name: infra_manager
+    container_name: ps_infra_manager
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./volumes/portainer:/data
     ports:
-      - "9000:9000"
-      - "8000:8000"
+      - "9696:9000"
+      - "8686:8000"
     networks:
       localinfra-network:
         ipv4_address: 172.21.0.10
   mysql: 
     image: mysql:5.7
-    container_name: mysql_server
+    container_name: ps_mysql_server
     restart: always
     volumes:
       - ./volumes/mysql:/var/lib/mysql
     ports:
-      - "3307:3306"
+      - "3737:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=Mxloak1244xlnw
       - MYSQL_ROOT_HOST=%
@@ -71,16 +57,16 @@ services:
         ipv4_address: 172.21.0.12
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5
-    container_name: phpmyadmin
+    container_name: ps_phpmyadmin
     restart: always
     ports:
-      - "3023:80"
+      - "3434:80"
     links:
       - mysql:db
     environment:
       - MYSQL_ROOT_PASSWORD=Mxloak1244xlnw
       - PMA_HOST=172.21.0.12
-      - PMA_PORT=3306
+      - PMA_PORT=3737
     networks:
       localinfra-network:
         ipv4_address: 172.21.0.13
