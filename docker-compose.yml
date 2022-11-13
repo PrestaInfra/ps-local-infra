@@ -1,10 +1,10 @@
 version: '3'
 services:
-  template_php7.1:
+  template_php71:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.1.Dockerfile
-    container_name: template_php7.1
+    container_name: template_php71
     depends_on:
         - mysql
         - phpmyadmin
@@ -14,11 +14,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.18
-  template_php7.2:
+  template_php72:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.2.Dockerfile
-    container_name: template_php7.2
+    container_name: template_php72
     depends_on:
         - mysql
         - phpmyadmin
@@ -28,11 +28,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.17
-  template_php7.3:
+  template_php73:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.3.Dockerfile
-    container_name: template_php7.3
+    container_name: template_php73
     depends_on:
         - mysql
         - phpmyadmin
@@ -42,11 +42,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.16
-  template_php7.4:
+  template_php74:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.4.Dockerfile
-    container_name: template_php7.4
+    container_name: template_php74
     depends_on:
         - mysql
         - phpmyadmin
@@ -56,11 +56,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.15
-  template_php7.8:
+  template_php78:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.8.Dockerfile
-    container_name: template_php7.8
+    container_name: template_php78
     depends_on:
         - mysql
         - phpmyadmin
@@ -108,7 +108,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=Mxloak1244xlnw
       - PMA_HOST=172.21.0.12
-      - PMA_PORT=3737
+      - PMA_PORT=3306
     networks:
       localinfra-network:
         ipv4_address: 172.21.0.13
