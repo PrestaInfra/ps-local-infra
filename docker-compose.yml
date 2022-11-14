@@ -1,10 +1,27 @@
 version: '3'
 services:
-  template_php71:
+  ps_instance_creator:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/ps-instance-creator.Dockerfile
+    container_name: ps_instance_creator
+    stdin_open: true
+    tty: true
+    restart: always
+    environment:
+      - PS_INFRA_NETWORK_ID=prestashop_localinfra_localinfra-network
+      - PS_INFRA_MOUNT_SOURCE_PATH=${PWD}/volumes/prestashop-instances
+      - PS_INFRA_MOUNT_TARGET_PATH=/var/www/html
+    ports:
+      - "3535:80"
+    networks:
+        localinfra-network:
+          ipv4_address: 172.21.0.19
+  template_php7.1:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.1.Dockerfile
-    container_name: template_php71
+    container_name: template_php7.1
     depends_on:
         - mysql
         - phpmyadmin
@@ -28,11 +45,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.17
-  template_php73:
+  template_php7.3:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.3.Dockerfile
-    container_name: template_php73
+    container_name: template_php7.3
     depends_on:
         - mysql
         - phpmyadmin
@@ -42,11 +59,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.16
-  template_php74:
+  template_php7.4:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.4.Dockerfile
-    container_name: template_php74
+    container_name: template_php7.4
     depends_on:
         - mysql
         - phpmyadmin
@@ -56,11 +73,11 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.15
-  template_php78:
+  template_php8.0:
     build:
       context: ./
-      dockerfile: ./dockerfiles/php-7.8.Dockerfile
-    container_name: template_php78
+      dockerfile: ./dockerfiles/php-8.0.Dockerfile
+    container_name: template_php8.0
     depends_on:
         - mysql
         - phpmyadmin
