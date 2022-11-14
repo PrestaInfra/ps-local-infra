@@ -12,6 +12,8 @@ services:
       - PS_INFRA_NETWORK_ID=prestashop_localinfra_localinfra-network
       - PS_INFRA_MOUNT_SOURCE_PATH=${PWD}/volumes/prestashop-instances
       - PS_INFRA_MOUNT_TARGET_PATH=/var/www/html
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "3535:80"
     networks:

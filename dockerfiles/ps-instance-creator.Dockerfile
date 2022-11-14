@@ -12,7 +12,7 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y \
   curl \
-  git \
+  wget \
   zip unzip \
   apt-utils mailutils
 
@@ -34,8 +34,11 @@ RUN install-php-extensions \
   zip \
   sockets
 
+COPY entrypoints/ps-instance-creator /home/entrypoints/ps-instance-creator
+RUN chmod -R +x /home/entrypoints/ps-instance-creator/*
 WORKDIR /var/www/html
 EXPOSE 80/tcp
+ENTRYPOINT /home/entrypoints/ps-instance-creator/setup.sh && /bin/bash
 
 
 
