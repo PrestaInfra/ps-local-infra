@@ -14,6 +14,7 @@ services:
       - PS_INFRA_MOUNT_TARGET_PATH=/var/www/html
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./volumes/ps-instance-creator:/var/www/html
     ports:
       - "3535:80"
     networks:
