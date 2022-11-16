@@ -13,6 +13,8 @@ RUN apt-get upgrade -y
 RUN apt-get install -y \
   curl \
   git \
+  wget \
+  nano \
   nodejs \
   zip unzip \
   apt-utils mailutils
