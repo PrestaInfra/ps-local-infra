@@ -36,7 +36,7 @@ RUN install-php-extensions \
 
 COPY entrypoints/ps-instance-creator /home/ps-instance-creator
 RUN chmod -R +x /home/ps-instance-creator/*
-WORKDIR /var/www/html
+WORKDIR /var/www
 EXPOSE 80/tcp
 ENTRYPOINT /home/ps-instance-creator/setup.sh && /bin/bash
 

@@ -23,7 +23,7 @@ for config_file in "${apache2_config_files[@]}"
         fi
 done
 
-chown -R www-data:www-data ps-instance-creator
+chown -R www-data:www-data /var/www/ps-instance-creator
 chmod 777 /var/run/docker.sock
 /etc/init.d/apache2 restart
 
