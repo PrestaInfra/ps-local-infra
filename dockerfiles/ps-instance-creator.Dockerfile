@@ -34,11 +34,11 @@ RUN install-php-extensions \
   zip \
   sockets
 
-COPY entrypoints/ps-instance-creator /home/entrypoints/ps-instance-creator
-RUN chmod -R +x /home/entrypoints/ps-instance-creator/*
+COPY entrypoints/ps-instance-creator /home/ps-instance-creator
+RUN chmod -R +x /home/ps-instance-creator/*
 WORKDIR /var/www/html
 EXPOSE 80/tcp
-ENTRYPOINT /home/entrypoints/ps-instance-creator/setup.sh && /bin/bash
+ENTRYPOINT /home/ps-instance-creator/setup.sh && /bin/bash
 
 
 

@@ -49,8 +49,8 @@ RUN composer --version # confirm installation
 
 RUN echo '# 4 - INIT ENTRYPOINTS'
 
-COPY entrypoints /home/entrypoints
-RUN chmod -R +x /home/entrypoints/* 
-WORKDIR /var/www/html
+COPY entrypoints/ps-container-template /home/ps-container-template
+RUN chmod -R +x /home/ps-container-template/*
+WORKDIR /var/www
 EXPOSE 80/tcp
-ENTRYPOINT /home/entrypoints/setup.sh && /bin/bash
+ENTRYPOINT /home/ps-container-template/setup.sh && /bin/bash
