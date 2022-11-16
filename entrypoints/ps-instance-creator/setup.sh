@@ -16,8 +16,8 @@ declare -a apache2_config_files=(
 
 for config_file in "${apache2_config_files[@]}"
     do
-		if [ ! -e $config_file ]; then
-            echo "Le fichier de config suivant n'as pas été trouvé : $config_file"
+	if [ ! -e $config_file ]; then
+            echo "Apache config file not found : $config_file"
         else
             sed -i -e "s|DocumentRoot /var/www/html|DocumentRoot /var/www/ps-instance-creator|g" $config_file
         fi
