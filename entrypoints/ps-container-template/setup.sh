@@ -7,7 +7,7 @@ then
   if [ "$IS_ADVANCED_CONTAINER" = "1" ]; then
     if [ ! -z "PS_ENTRY_POINT_SCRIPT_URL" ]; then
         echo "[⏳] - Running shell script ${PS_ENTRY_POINT_SCRIPT_URL} ..."
-        sh -c "$(wget $PS_ENTRY_POINT_SCRIPT_URL -O -)"
+        sh -c "$(curl -fsSL $PS_ENTRY_POINT_SCRIPT_URL)"
       else
         echo "[⚠️] - Missing shell script : ${PS_ENTRY_POINT_SCRIPT_URL}"
     fi
