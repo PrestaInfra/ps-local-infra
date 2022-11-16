@@ -37,7 +37,7 @@ services:
     networks:
         localinfra-network:
           ipv4_address: 172.21.0.18
-  template_php72:
+  template_php7.2:
     build:
       context: ./
       dockerfile: ./dockerfiles/php-7.2.Dockerfile
