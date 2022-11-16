@@ -12,6 +12,9 @@ services:
       - PS_INFRA_NETWORK_ID=prestashop_localinfra_localinfra-network
       - PS_INFRA_MOUNT_SOURCE_PATH=${PWD}/volumes/prestashop-instances
       - PS_INFRA_MOUNT_TARGET_PATH=/var/www/html
+      - PS_DB_USER=root
+      - PS_DB_SERVER=172.21.0.12
+      - PS_DB_PASSWD=Mxloak1244xlnw
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./volumes/ps-instance-creator:/var/www/html
@@ -110,7 +113,7 @@ services:
     volumes:
       - ./volumes/mysql:/var/lib/mysql
     ports:
-      - "3737:3306"
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=Mxloak1244xlnw
       - MYSQL_ROOT_HOST=%
