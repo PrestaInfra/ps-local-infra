@@ -7,7 +7,9 @@ then
   if [ "$IS_ADVANCED_CONTAINER" = "1" ]; then
     if [ ! -z "PS_ENTRY_POINT_SCRIPT_URL" ]; then
         echo "[⏳] - Running shell script ${PS_ENTRY_POINT_SCRIPT_URL} ..."
-        sh -c "$(curl -fsSL $PS_ENTRY_POINT_SCRIPT_URL)"
+        curl -L $PS_ENTRY_POINT_SCRIPT_URL -o installer.sh
+        chmod +x installer.sh
+        ./installer.sh
       else
         echo "[⚠️] - Missing shell script : ${PS_ENTRY_POINT_SCRIPT_URL}"
     fi
