@@ -16,6 +16,7 @@ RUN apt-get install -y \
   wget \
   nano \
   nodejs \
+  default-mysql-client \
   zip unzip \
   apt-utils mailutils
 
