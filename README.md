@@ -9,7 +9,7 @@ prestashop_localinfra
 - cd ps-local-infra
 - chmod +x install.sh
 - ./install.sh
-- Go to http://localhost:9000
+- Go to http://localhost:9696 or http://localhost:3535 
 
 
 # Usage approaches
